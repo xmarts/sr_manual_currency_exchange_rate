@@ -13,4 +13,4 @@ from . import inherited_invoice
 from . import inherited_purchase_order
 from . import inherited_sales_order
 from . import inherited_res_currency
-
+from . import inherit_stock_move

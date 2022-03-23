@@ -10,6 +10,7 @@
 
 from odoo import models, fields, api
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+import dateutil.parser
 
 
 class PurchaseOrder(models.Model):
@@ -18,6 +19,15 @@ class PurchaseOrder(models.Model):
     apply_manual_currency_exchange = fields.Boolean(string='Apply Manual Currency Exchange')
     manual_currency_exchange_rate = fields.Float(string='Manual Currency Exchange Rate', digits=(2,12))
     active_manual_currency_rate = fields.Boolean('active Manual Currency', default=False)
+
+    @api.onchange('active_manual_currency_rate', 'apply_manual_currency_exchange', 'date_order')
+    def onchange_apply_manual_currency_exchange(self):
+        for rec in self:
+            if rec.active_manual_currency_rate and rec.apply_manual_currency_exchange:
+                date_order = str(rec.date_order).split(' ')[0]
+                date_order = dateutil.parser.parse(date_order).date()
+                currency_rates = rec.currency_id._get_rates(rec.company_id or self.env.company, date_order)
+                rec.manual_currency_exchange_rate = currency_rates.get(rec.currency_id.id)
 
     def _prepare_invoice(self):
         result = super(PurchaseOrder, self)._prepare_invoice()

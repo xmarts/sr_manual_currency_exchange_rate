@@ -15,7 +15,7 @@
     'category': 'Accounting Management',
     'description': """
     manual currency exchange rate
-        manual currency exchange rate on invoice 
+        manual currency exchange rate on invoice
         manual currency exchange rate on sales order
         manual currency exchange rate on Purchase order
         manual currency exchange rate on request for quotations
@@ -42,8 +42,15 @@
         inherit vendor bills payments
     """,
     'author': "Sitaram",
-    'website':"https://www.sitaramsolutions.in",
-    'depends': ['base', 'sale_management', 'purchase', 'stock', 'account'],
+    'website': "https://www.sitaramsolutions.in",
+    'depends': [
+        'base',
+        'sale_management',
+        'purchase',
+        'stock',
+        'account',
+        'inventory_valuation_by_date_of_purchase',
+    ],
     'data': [
         'views/inherited_invoice_payment.xml',
         'views/inherited_invoice.xml',
@@ -60,5 +67,5 @@
     'images': ['static/description/banner.png'],
     "price": 30,
     "currency": 'EUR',
-    
+
 }
