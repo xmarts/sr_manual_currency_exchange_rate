@@ -81,6 +81,7 @@ class AccountMoveLine(models.Model):
     @api.onchange('product_id')
     def _onchange_product_id(self):
         for line in self:
+            company = line.move_id.company_id
             if not line.product_id or line.display_type in ('line_section', 'line_note'):
                 continue
 
