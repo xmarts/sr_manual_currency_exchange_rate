@@ -50,6 +50,7 @@
         'stock',
         'account',
         'inventory_valuation_by_date_of_purchase',
+        'invoice_multi_payment',
     ],
     'data': [
         'views/inherited_invoice_payment.xml',
