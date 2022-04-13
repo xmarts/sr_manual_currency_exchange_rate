@@ -15,6 +15,10 @@
                         attrs="{'invisible': ['|',('apply_manual_currency_exchange', '=', False),('active_manual_currency_rate', '=', False)],'required':[('apply_manual_currency_exchange', '=', True)]}" />
                 </field>
             </field>
+            <field name="arch" type="xml">
+                <field name="available_payment_method_line_ids" position="after">
+                    <field name="available_partner_bank_ids" invisible="1"/>
+            </field>
         </record>
     </data>
 </odoo>
